@@ -15,7 +15,7 @@ import flash from "express-flash"
 
 
 const app = express();
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3440
 const handleServerListening = () => console.log(`Server is successfully Listening on http://localhost:${PORT}⚡`) 
 
 app.use(express.json())

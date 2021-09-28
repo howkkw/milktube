@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 import fetch from "node-fetch"
 
 export const home = async(req, res) => {
-
+    
     const videos=await Video.find().populate("owner").sort({createdAt:"desc"})
     
     return res.render("home", {pageTitle:"HOME", videos })
