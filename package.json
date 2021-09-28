@@ -8,7 +8,7 @@
     "build:server": "babel src/ -d build",
     "build:asset": "webpack --mode=production",
     "dev:server": "nodemon",
-    "dev:asset": "webpack --mode=development --w"
+    "dev:asset": "webpack --mode=development --watch"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,6 @@
   "dependencies": {
     "acorn": "^8.5.0",
     "acorn-import-assertions": "^1.7.6",
-    "aws-sdk": "^2.996.0",
     "bcrypt": "^5.0.1",
     "circular-json": "^0.5.9",
     "connect-mongo": "^4.5.0",
@@ -37,7 +36,6 @@
     "mongoose": "^5.13.9",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
-    "multer-s3": "^2.9.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^6.0.1",
     "nodemon": "^2.0.12",

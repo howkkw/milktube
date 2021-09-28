@@ -47,49 +47,28 @@ export const getUpload = (req, res) => {
     return res.render("upload", {pageTitle:"UPLOAD"})
 }
 export const postUpload = async(req, res) =>{
-    const { file,
+    const { files,
         body:{title, Description, hashtags},
     session:{user}} = req
+    console.log(files)
     let thumbnail
-    try {
-        var process = new ffmpeg(file.location);
-        process.then(function (Vid) {
-            // Callback mode
-            Vid.fnExtractFrameToJPG('uploads/video/thumb', {
-                frame_rate : 1,
-                number : 1,
-                file_name : 'my_frame_%t_%s'
-            }, function (error, files) {
-                if (!error)
-                    console.log('Frames: ' + files)
-                    thumbnail = files[files.length-1]
-                    video.thumbpath=thumbnail
-                    video.save()
-                    req.flash("info", "Successfully Uploaded!")
-    return res.redirect("/")
-            });
-        }, function (err) {
-            console.log('Error: ' + err);
-        }).then()
-    } catch (e) {
-        console.log(e.code);
-        console.log(e.msg);
-    }
-       
-
+    
     const video = await Video.create({
-        path:file.location,
+        path:files.video[0].location,
         title,
         Description,
-        thumbpath:thumbnail,
+        thumbpath:files.image[0].location,
         hashtags:hashtags.split(",").map((a) => a.startsWith("#") ? a:`#${a}`),
         owner:user._id
     })
+
+    req.flash("info", "Successfully Uploaded!")
+
    
     const userVideo= await User.findById(user._id)
    userVideo.videos.push(video._id)
    userVideo.save()
-    
+    return res.redirect
 
     
 }

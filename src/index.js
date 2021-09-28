@@ -15,7 +15,7 @@ import flash from "express-flash"
 
 
 const app = express();
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 3000
 const handleServerListening = () => console.log(`Server is successfully Listening on http://localhost:${PORT}⚡`) 
 
 app.use(express.json())
@@ -32,7 +32,7 @@ app.use(session({
 app.use(sessionMiddleware)
 app.use(flash())
 app.post("/user/:id([0-9a-f]{24})/edit/profile-image",uploadAvatar.single("image"))
-app.post("/video/upload", uploadVideo.single("video"))
+app.post("/video/upload", uploadVideo.fields([{name:"video", maxCount:1 }, {name : "image", maxCount:1}]))
 app.post("/video/:id([0-9a-f]{24})/edit/video", uploadVideo.single("video"))
 app.post("/video/:id([0-9a-f]{24})/edit/thumb", uploadVideo.single("image"))
 app.use("/uploads", express.static("uploads"))

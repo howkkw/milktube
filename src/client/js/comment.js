@@ -107,10 +107,10 @@ const fetchComment = async (event) => {
             a.href=`/user/${json.ownerID}`
             const Writer = document.createElement("div")
             Writer.id="commentsWriter"
-
+            
             if(json.avatarURL){ 
                img = document.createElement("img")
-            img.src=`${json.avatarURL}`}
+            img.src=json.avatarURL}
             else{
                img = document.createElement("span")
             img.innerText="😀"

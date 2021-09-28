@@ -7,7 +7,7 @@ export const postComment = async(req, res) => {
  const UserID=req.session.user._id
  const video= await Video.findById(id)
  const ownerUser=await User.findById(UserID)
-
+console.log(ownerUser)
  if(!video){
 return res.sendStatus(400)
  
