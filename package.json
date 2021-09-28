@@ -23,6 +23,7 @@
   "dependencies": {
     "acorn": "^8.5.0",
     "acorn-import-assertions": "^1.7.6",
+    "aws-sdk": "^2.996.0",
     "bcrypt": "^5.0.1",
     "circular-json": "^0.5.9",
     "connect-mongo": "^4.5.0",
