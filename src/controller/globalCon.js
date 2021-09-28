@@ -106,7 +106,7 @@ export const githubFinish = async (req, res) => {
     const url="https://github.com/login/oauth/access_token"
     const config={
         client_id:process.env.CLIENT_ID,
-        client_secret:CLIENT_SECRET,
+        client_secret:process.env.CLIENT_SECRET,
         code:req.query.code}
     const configURL=new URLSearchParams(config).toString()
     const finalURL=`${url}?${configURL}`
