@@ -84,7 +84,7 @@ export const postEditImg = async(req, res) =>{
  const id=req.params.id
  const file=req.file
  const updatedUser=await User.findByIdAndUpdate(id,{
-   avatarURL:file.path
+   avatarURL:file.location
 },{new:true})
 req.session.user=updatedUser
 req.flash("info", "Successfully Edited!")

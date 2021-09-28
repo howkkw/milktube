@@ -28,7 +28,7 @@ export const postEdit = async(req, res) => {
         title,
         Description,
         hashtags:hashtags.split(",").map((a) => a.startsWith("#") ? a:`#${a}`),
-        path:file.path
+        path:file.location
     }, {new:true})
 } else{
     await Video.findByIdAndUpdate(id,{
@@ -52,7 +52,7 @@ export const postUpload = async(req, res) =>{
     session:{user}} = req
     let thumbnail
     try {
-        var process = new ffmpeg(file.path);
+        var process = new ffmpeg(file.location);
         process.then(function (Vid) {
             // Callback mode
             Vid.fnExtractFrameToJPG('uploads/video/thumb', {
@@ -78,7 +78,7 @@ export const postUpload = async(req, res) =>{
        
 
     const video = await Video.create({
-        path:file.path,
+        path:file.location,
         title,
         Description,
         thumbpath:thumbnail,
@@ -101,7 +101,7 @@ export const postVideoEdit = async (req, res) => {
     const id=req.params.id
     const file=req.file
     const updatedVideo=await Video.findByIdAndUpdate(id,{
-      path:file.path
+      path:file.location
    },{new:true})
    req.flash("info", "Successfully Edited!")
        return res.redirect(`/video/${id}/edit`)
@@ -124,7 +124,7 @@ export const postVideoThumbnail = async (req, res) => {
     const id=req.params.id
     const file=req.file
     const updatedVideo=await Video.findByIdAndUpdate(id,{
-      thumbpath:file.path
+      thumbpath:file.location
    },{new:true})
    req.flash("info", "Successfully Edited!")
        return res.redirect(`/video/${id}/edit`)

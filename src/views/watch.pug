@@ -3,7 +3,7 @@ include ./mixin/comment
 block contents
     div.videoContainer
         div.video
-            video(src=`/${video.path}`, data-id=video._id)
+            video(src=`${video.path}`, data-id=video._id)
             div.controls
                 span#playBtn
                     i.fas.fa-play
@@ -28,7 +28,7 @@ block contents
             if !video.owner.avatarURL
                 span.profile-img-icon 😀
             else
-                img(src=`/${video.owner.avatarURL}` width=40, height=40).video_owner_img
+                img(src=`${video.owner.avatarURL}` width=40, height=40).video_owner_img
             h4.video_owner_username #{video.owner.username}
             span Posted
         if Math.floor((Date.now()-video.createdAt)/1000)<60

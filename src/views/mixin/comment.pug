@@ -4,7 +4,7 @@ mixin Comment(comment)
             a(href=`/user/${comment.owner._id}`)
                 div#commentsWriter
                     if comment.owner.avatarURL
-                        img(src=`/${comment.owner.avatarURL}`)
+                        img(src=`${comment.owner.avatarURL}`)
                     else
                         span 😀           
                     span=comment.owner.username

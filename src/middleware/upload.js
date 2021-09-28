@@ -10,7 +10,8 @@ const s3 = new aws.S3({
 })
 const multerUploaer= multerS3({
     s3: s3,
-    bucket : "milktube"
+    bucket : "milktube",
+    acl:"public-read"
 })
 export const uploadAvatar=multer({dest:"uploads/avatar",
 storage:multerUploaer,

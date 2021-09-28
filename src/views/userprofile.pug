@@ -6,7 +6,7 @@ block contents
             if !user.avatarURL 
                 span.profile-img-icon.profile-icon 😀
             else
-                img(src=`/${user.avatarURL}`).profile-img
+                img(src=`${user.avatarURL}`).profile-img
             h4.profile-username=user.username
     div.video-grid
         each video in user.videos
