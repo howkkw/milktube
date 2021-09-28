@@ -8,26 +8,20 @@ const s3 = new aws.S3({
         secretAccessKey:process.env.AWS_SECRET
     }
 })
-const multerUploaderAvatar= multerS3({
+const multerUploaer= multerS3({
     s3: s3,
-    bucket : "milktube/image",
+    bucket : "milktube",
     acl:"public-read"
 })
-const multerUploaderVideo= multerS3({
-    s3: s3,
-    bucket : "milktube/video",
-    acl:"public-read"
-})
-
 export const uploadAvatar=multer({dest:"uploads/avatar",
-storage:multerUploaderAvatar,
+storage:multerUploaer,
 limits:{
     fileSize:3000000,
 }
 
 })
 export const uploadVideo=multer({dest:"uploads/video",
-storage:multerUploaderVideo,
+storage:multerUploaer,
 limits:{
     fileSize:10000000,
 }

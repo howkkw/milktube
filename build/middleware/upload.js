@@ -19,19 +19,14 @@ var s3 = new _awsSdk["default"].S3({
     secretAccessKey: process.env.AWS_SECRET
   }
 });
-var multerUploaderAvatar = (0, _multerS["default"])({
+var multerUploaer = (0, _multerS["default"])({
   s3: s3,
-  bucket: "milktube/image",
-  acl: "public-read"
-});
-var multerUploaderVideo = (0, _multerS["default"])({
-  s3: s3,
-  bucket: "milktube/video",
+  bucket: "milktube",
   acl: "public-read"
 });
 var uploadAvatar = (0, _multer["default"])({
   dest: "uploads/avatar",
-  storage: multerUploaderAvatar,
+  storage: multerUploaer,
   limits: {
     fileSize: 3000000
   }
@@ -39,7 +34,7 @@ var uploadAvatar = (0, _multer["default"])({
 exports.uploadAvatar = uploadAvatar;
 var uploadVideo = (0, _multer["default"])({
   dest: "uploads/video",
-  storage: multerUploaderVideo,
+  storage: multerUploaer,
   limits: {
     fileSize: 10000000
   }
