@@ -25,7 +25,7 @@ export const myProfile = (req, res) => {
 }
 
 export const getEditProfile = (req, res) => {
-    return res.render("edit-Profile", {pageTitle:`Edit ${res.locals.user.username}'s Profile`})
+    return res.render("edit-profile", {pageTitle:`Edit ${res.locals.user.username}'s Profile`})
 }
 export const postEditProfile = async (req, res) => {
     const {username, location,introduction} = req.body
