@@ -1,0 +1,34 @@
+mixin Comment(comment)
+    div#commentsBox(data-id=comment._id)
+        div#commentsColumn
+            a(href=`/user/${comment.owner._id}`)
+                div#commentsWriter
+                    if comment.owner.avatarURL
+                        img(src=`/${comment.owner.avatarURL}`)
+                    else
+                        span 😀           
+                    span=comment.owner.username
+            div#commentsContent
+                div#CommentContent
+                    span=comment.content
+                div#CommentIcon
+                    div#ICON
+                        if user
+                            if String(user._id) === String(comment.owner._id)
+                                span#editICON
+                                    i.fas.fa-edit
+                                span#deleteICON ❌
+                    if Math.floor((Date.now()-video.createdAt)/1000)<60
+                        div#time-remaining  방금 전
+                    else if Math.floor((Date.now()-video.createdAt)/1000)>=60 && Math.floor((Date.now()-video.createdAt)/1000)<3600
+                        div#time-remaining  #{Math.floor((Date.now()-video.createdAt)/1000/60)}분 전
+                    else if Math.floor((Date.now()-video.createdAt)/1000)>=3600 && Math.floor((Date.now()-video.createdAt)/1000)<86400
+                        div#time-remaining  #{Math.floor((Date.now()-video.createdAt)/1000/60/60)}시간 전
+                    else if Math.floor((Date.now()-video.createdAt)/1000)>=86400 && Math.floor((Date.now()-video.createdAt)/1000)<604800
+                        div#time-remaining  #{Math.floor((Date.now()-video.createdAt)/1000/60/60/24)}일 전
+                    else if Math.floor((Date.now()-video.createdAt)/1000)>=604800 && Math.floor((Date.now()-video.createdAt)/1000)<2592000
+                        div#time-remaining  #{Math.floor((Date.now()-video.createdAt)/1000/60/60/24/7)}주 전
+                    else if Math.floor((Date.now()-video.createdAt)/1000)>=2592000 && Math.floor((Date.now()-video.createdAt)/1000)<13478400
+                        div#time-remaining  #{Math.floor((Date.now()-video.createdAt)/1000/60/60/24/30)}달 전
+                    else if Math.floor((Date.now()-video.createdAt)/1000)>=13478400
+                        div#time-remaining  #{Math.floor((Date.now()-video.createdAt)/1000/60/60/24/30/12)}년 전

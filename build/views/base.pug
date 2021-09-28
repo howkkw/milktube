@@ -1,0 +1,17 @@
+Doctype 
+    html(lang="kr")
+        head
+            link(rel="stylesheet" href="/asset/css/style.css")
+            link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
+            title #{pageTitle} | MILKTUBE
+        body
+            include partials/header
+            if messages.error
+                span#infoMessage=messages.error 
+            if messages.info
+                span#infoMessage=messages.info
+            main
+                block contents
+            include partials/footer
+        block scripts
+        script(src="/asset/js/main.js")

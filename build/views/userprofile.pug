@@ -1,0 +1,13 @@
+extends base
+include mixin/video
+block contents
+    div.profile-link
+        a(href=`${id}/profile`)
+            if !user.avatarURL 
+                span.profile-img-icon.profile-icon 😀
+            else
+                img(src=`/${user.avatarURL}`).profile-img
+            h4.profile-username=user.username
+    div.video-grid
+        each video in user.videos
+            +video(video)

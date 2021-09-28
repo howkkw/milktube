@@ -1,0 +1,27 @@
+header#header
+div.header
+    a(href="/").logo
+        i.fab.fa-youtube
+        | MILKTUBE
+    nav
+        ul.header-column
+            li
+                a(href="/search") Search
+            if !loggedIn
+                li 
+                    a(href="/join") Join
+                li
+                    a(href="/login") Login
+            else
+                li
+                    a(href="/video/upload") Upload
+                li
+                    a(href="/logout") LogOut
+                if !user.avatarURL
+                    li.avatarLogo
+                        a(href=`/user/${user._id}`)
+                            span 😀
+                else
+                    li
+                        a(href=`/user/${user._id}`) 
+                            img(src=`/${user.avatarURL}` width=50, height=50) 

@@ -1,0 +1,20 @@
+.editPassword{
+    margin-top:20px;
+    font-size:20px;
+    text-decoration: underline;
+}
+.edit-img-btn{
+    color:black;
+    background-color:white;
+    padding:5px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border:1px solid #2c2e3c;
+    transition: 0.3s ease-in-out;
+    &:hover{
+        background-color:black;
+        color:white;
+    }
+}

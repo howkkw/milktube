@@ -1,0 +1,25 @@
+extends base
+block contents
+    div.profile-link
+        if !profileUser.avatarURL
+            span.profile-img-icon 😀
+        else
+            img(src=`/${profileUser.avatarURL}`).profile-img
+    div.Form
+        div.Form-column
+            span Username
+            span.user-inform=profileUser.username
+        div.Form-column
+            span E-Mail
+            span.user-inform=profileUser.email
+        div.Form-column
+            span Location
+            span.user-inform=profileUser.location
+        div.introduction
+            span Introduction
+            span.user-inform=profileUser.introduction
+    if(user)
+        if String(user._id) === String(id) 
+            a(href=`/user/${id}/edit`)
+                h5.account-question.edit-profile-btn Edit Profile &rarr;
+            

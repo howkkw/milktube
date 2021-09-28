@@ -1,0 +1,10 @@
+extends base
+include mixin/video
+block contents
+        div.video-grid
+            each video in videos
+                +video(video)
+            else
+                h3.No-result Sorry. Nothing Found.
+block scripts
+    script(src="/asset/js/main.js") 

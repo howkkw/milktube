@@ -1,0 +1,56 @@
+.profile-link{
+    display:flex;
+    justify-content: center;
+    width:100%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom:40px;
+    a{
+        text-align: center;
+    }
+    .profile-username{
+        font-size:25px;
+        font-weight: 600;
+        transition: 0.3s ease-in-out;
+    }
+    &:hover .profile-username{
+        color:red;
+    }
+}
+.profile-img{
+width:200px;
+height:200px;
+border-radius:50%;
+margin-bottom:20px;
+}
+.introduction{
+    margin-top:10px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    span{
+        display:flex;
+      width:250px;
+      justify-content: center;
+      font-size:30px;
+    align-items: center;
+   
+}
+    span:first-child{
+        margin-bottom:20px;
+    }
+    span:last-child{
+        width: 400px;
+        background-color: black;
+        border-color:white;
+        border-radius:10px;
+        transition: 0.3s ease-in-out;
+        color:white;
+        font-size:20px;
+        padding:20px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+}

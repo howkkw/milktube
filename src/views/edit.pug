@@ -1,0 +1,19 @@
+extends base
+block contents
+    form(method="POST").Form
+        div.Form-column
+            a(href="edit/video")
+                span(for="video").edit-img-btn Edit Video File
+        div.Form-column
+            a(href="edit/thumb")
+                span(for="video").edit-img-btn Edit Thumbnail        
+        div.Form-column
+            span Title
+            input(type="text", required, name="title", id="title", placeholder="Video Title", minlength="5", value=video.title)
+        div.Form-column    
+            span Description
+            input(type="text", required, name="Description", id="Description", placeholder="Video Description", minlength="10" , value=video.Description)
+        div.Form-column 
+            span Hashtags
+            input(type="text", required, name="hashtags", id="hashtags", placeholder="Video Hashtags / Separated by comma", value=video.hashtags.join())
+        input(type="submit", value="Edit Video").Form-btn

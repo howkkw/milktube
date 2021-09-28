@@ -1,0 +1,7 @@
+extends base
+block contents
+    form(method="POST", enctype="multipart/form-data").Form
+        div.Form-column    
+            span Profile Image
+            input(type="file", required, name="image", id="image", accept="image/*")
+        input(type="submit", value="Edit Profile Image").Form-btn

@@ -1,0 +1,85 @@
+// components //
+@import "component/header.scss";
+@import "component/video.scss";
+@import "component/shared.scss";
+@import "component/footer.scss";
+@import "component/profile.scss";
+@import "component/video-player.scss";
+@import "component/comment.scss";
+
+// configs //
+@import "config/_variables";
+@import "config/_reset";
+
+// screens //
+@import "screen/home.scss";
+@import "screen/search.scss";
+@import "screen/edit.scss";
+@import "screen/watch.scss";
+
+
+a{
+    color:inherit;
+    text-decoration: none;
+}
+
+body{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color:black;
+    color:white;
+    max-height:100%;
+    max-width:100%;
+}
+.fa-youtube{
+    color:$red;
+    font-size:70px;
+}
+main{
+    max-width:1200px;
+    width:100%;
+    margin: 0 auto;
+    margin-top:50px;
+}
+.profile-img-icon{
+   font-size:70px;
+}
+.profile-icon{
+    display:block;
+    margin-bottom:30px;
+}
+.video-icon{
+    font-size:25px;
+}
+#infoMessage{
+    font-size:25px;
+    position:absolute;
+    font-weight:600;
+    background-color:$red;
+    padding:20px;
+    border-radius: 10px;
+    border: 1px solid white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation:infoMessagePopedUp 1s ease-in-out forwards;
+    animation-delay: 1s;
+    
+
+
+}
+@keyframes infoMessagePopedUp{
+    0% {
+
+    }50%{
+       
+        opacity:0;
+        display:none;
+       
+    }
+    100%{
+        opacity:0;
+        display:none;
+        z-index: -100;
+        
+    }
+}

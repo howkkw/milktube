@@ -1,0 +1,21 @@
+extends base
+block contents
+    if errorMsg
+        h4=errorMsg
+    form(method="POST").Form
+        div.Form-column
+            a(href="edit/profile-image")
+                span(for="avatar").edit-img-btn Edit Profile Image
+        div.Form-column    
+            span(for="username") Username
+            input(type="username", required, name="username", id="username", placeholder="User Name", value=user.username, minlength="2")
+        div.Form-column    
+            span(for="location") Location
+            input(type="text", required, name="location", id="location", placeholder="Where you live in", value=user.location)
+        div.Form-column    
+            span(for="location") Introduction
+            input(type="text", name="introduction", id="introduction", placeholder="My Introduction", value=user.introduction).intro    
+        if !user.socialOnly
+            a(href="edit/password").account-question.editPassword
+                h3 Edit password &rarr; 
+        input(type="submit", value="Edit Profile").Form-btn

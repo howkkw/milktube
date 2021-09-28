@@ -1,0 +1,12 @@
+extends base
+include mixin/video
+block contents
+        form.search-form
+            label(for="keyword")
+            input(type="text", id="keyword", name="keyword", required, placeholder="SEARCH BY KEYWORD" minlength="2")
+            input(type="submit" value="SEARCH")
+        main.video-grid
+            each video in videos     
+                +video(video)
+            else 
+                h3.No-result Sorry. Nothing Found.

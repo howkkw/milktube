@@ -1,0 +1,16 @@
+extends base
+block contents
+    form(method="POST", enctype="multipart/form-data").Form
+        div.Form-column
+            span Video
+            input(type="file", required, name="video", id="video", accept="video/*")
+        div.Form-column
+            span Title 
+            input(type="text", required, name="title", id="title", placeholder="Video Title", minlength="5")
+        div.Form-column
+            span Description
+            input(type="text", required, name="Description", id="Description", placeholder="Video Description", minlength="10")
+        div.Form-column
+            span Hashtags
+            input(type="text", required, name="hashtags", id="hashtags", placeholder="Separated by comma(,)")
+        input(type="submit", value="Upload Video").Form-btn

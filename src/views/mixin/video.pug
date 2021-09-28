@@ -1,0 +1,16 @@
+mixin video(video)
+    div.video-box
+        a(href=`/video/${video._id}`)
+            img(src=`/${video.thumbpath}`).video-box-thumnail
+        div.video-box-inform
+            a(href=`/video/${video._id}`)
+                if !video.owner.avatarURL
+                    span.profile-img.video-icon 😀
+                else
+                    img(src=`/${video.owner.avatarURL}` width=30, height=30)
+            div.video-column
+                h3.video-title
+                    a(href=`/video/${video._id}`)=video.title
+                h6.video-inform
+                    a(href=`/user/${video.owner._id}`)=video.owner.username
+                span.video-views #{video.meta.view} 회   

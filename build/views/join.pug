@@ -1,0 +1,25 @@
+extends base
+block contents
+    form(method="POST").Form
+        div.Form-column
+            span ID
+            input(type="text", required, name="id", id="id", placeholder="User ID", minlength="5")
+        div.Form-column
+            span Email
+            input(type="email", required, name="email", id="email", placeholder="User E-mail")
+        div.Form-column
+            span Username
+            input(type="username", required, name="username", id="username", placeholder="User Name", minlength="2")
+        div.Form-column
+            span Password
+            input(type="password", required, name="password1", id="password1", placeholder="User Password", minlength="6")
+        div.Form-column
+            span Password Confirm
+            input(type="password", required, name="password2", id="password2", placeholder="User Password Confirmation", minlength="6")
+        div.Form-column
+            span Location
+            input(type="text", required, name="location", id="location", placeholder="Where you live in")
+        input(type="submit", value="Join").Form-btn
+    br
+    a(href="/login").account-question If you already have Account? Login Now!
+            

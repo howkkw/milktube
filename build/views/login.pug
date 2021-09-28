@@ -1,0 +1,20 @@
+extends base
+block contents
+    if errorMsg
+        h4=errorMsg
+    form(method="POST").Form
+        div.Form-column
+            span ID  
+            input(type="text", required, name="id", id="id", placeholder="User ID")
+        div.Form-column
+            span Password  
+            input(type="password", required, name="password", id="password", placeholder="User Password")
+        input(type="submit", value="Login").Form-btn
+        div.line
+        a(href="join/githubstart").github-login
+            i.fab.fa-github 
+             | Login with Github &rarr;
+
+    br
+    a(href="/join").account-question If you don't have Account? Join Now!
+    

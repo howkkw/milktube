@@ -1,0 +1,7 @@
+extends base
+block contents
+    form(method="POST", enctype="multipart/form-data").Form
+        div.Form-column    
+            span Video Thumbnail
+            input(type="file", required, name="image", id="image", accept="image/*")
+        input(type="submit", value="Edit Thumbnail").Form-btn

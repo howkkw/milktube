@@ -1,0 +1,70 @@
+extends base
+include ./mixin/comment
+block contents
+    div.videoContainer
+        div.video
+            video(src=`/${video.path}`, data-id=video._id)
+            div.controls
+                span#playBtn
+                    i.fas.fa-play
+                span#Time
+                    span#currentTime 00:00
+                    span  / 
+                    span#durationTime 00:00
+                input(type="range" step="1" value="0" min="0")#timeLine
+                span#Volume
+                    span#muteBtn
+                        i.fas.fa-volume-up
+                    input(type="range" step="0.1" value="0.5" min="0", max="1")#volumeBar
+                span#fullscreenBtn
+                    i.fas.fa-expand
+    div.video_watch_inform_box
+        div.video_title_views
+            h2.video_title #{video.title} 
+            span.video_views • #{video.meta.view} 회
+        h4.video_description=video.Description
+        h4.video_hashtags=video.hashtags
+        a(href=`/user/${video.owner._id}`).video_owner
+            if !video.owner.avatarURL
+                span.profile-img-icon 😀
+            else
+                img(src=`/${video.owner.avatarURL}` width=40, height=40).video_owner_img
+            h4.video_owner_username #{video.owner.username}
+            span Posted
+        if Math.floor((Date.now()-video.createdAt)/1000)<60
+            div#timeVideo-createdAt  방금 전
+        else if Math.floor((Date.now()-video.createdAt)/1000)>=60 && Math.floor((Date.now()-video.createdAt)/1000)<3600
+            div#timeVideo-createdAt  #{Math.floor((Date.now()-video.createdAt)/1000/60)}분 전
+        else if Math.floor((Date.now()-video.createdAt)/1000)>=3600 && Math.floor((Date.now()-video.createdAt)/1000)<86400
+            div#timeVideo-createdAt  #{Math.floor((Date.now()-video.createdAt)/1000/60/60)}시간 전
+        else if Math.floor((Date.now()-video.createdAt)/1000)>=86400 && Math.floor((Date.now()-video.createdAt)/1000)<604800
+            div#timeVideo-createdAt  #{Math.floor((Date.now()-video.createdAt)/1000/60/60/24)}일 전
+        else if Math.floor((Date.now()-video.createdAt)/1000)>=604800 && Math.floor((Date.now()-video.createdAt)/1000)<2592000
+            div#timeVideo-createdAt  #{Math.floor((Date.now()-video.createdAt)/1000/60/60/24/7)}주 전
+        else if Math.floor((Date.now()-video.createdAt)/1000)>=2592000 && Math.floor((Date.now()-video.createdAt)/1000)<13478400
+            div#timeVideo-createdAt  #{Math.floor((Date.now()-video.createdAt)/1000/60/60/24/30)}달 전
+        else if Math.floor((Date.now()-video.createdAt)/1000)>=13478400
+            div#timeVideo-createdAt  #{Math.floor((Date.now()-video.createdAt)/1000/60/60/24/30/12)}년 전
+        if(user) 
+            if String(video.owner._id) === String(user._id)
+                div.line
+                a(href=`${id}/edit`).video-btn Edit Video 
+                a(href=`${id}/remove`).video-btn Delete Video
+    if user            
+        form#comments
+            input(type="text", name="text", required, placeholder="Write Comment ...", minlength=2 )
+            button
+                i.far.fa-comment
+    else
+        form#comments
+            input(type="text", disabled, name="text", required, placeholder="Login Now for Commenting" )
+            button
+                i.far.fa-comment     
+
+    div#commentsContainer
+        each comment in comments.reverse()
+            +Comment(comment)    
+                        
+block scripts
+    script(src="/asset/js/videoPlayer.js")
+    script(src="/asset/js/comment.js")
