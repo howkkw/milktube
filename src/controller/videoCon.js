@@ -43,7 +43,6 @@ export const postEdit = async(req, res) => {
     
 }
 export const getUpload = (req, res) => {
-    req.flash("info", "The Video Thumbnail will be automatically set. You can change a thumbnail using Edit after uploading")
     return res.render("upload", {pageTitle:"UPLOAD"})
 }
 export const postUpload = async(req, res) =>{
