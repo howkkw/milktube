@@ -50,7 +50,6 @@ export const postUpload = async(req, res) =>{
         body:{title, Description, hashtags},
     session:{user}} = req
     console.log(files)
-    let thumbnail
     
     const video = await Video.create({
         path:files.video[0].location,
@@ -63,11 +62,10 @@ export const postUpload = async(req, res) =>{
 
     req.flash("info", "Successfully Uploaded!")
 
-   
     const userVideo= await User.findById(user._id)
    userVideo.videos.push(video._id)
    userVideo.save()
-    return res.redirect
+    return res.redirect("/")
 
     
 }
