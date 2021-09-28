@@ -337,7 +337,7 @@ var githubFinish = /*#__PURE__*/function () {
             url = "https://github.com/login/oauth/access_token";
             config = {
               client_id: process.env.CLIENT_ID,
-              client_secret: CLIENT_SECRET,
+              client_secret: process.env.CLIENT_SECRET,
               code: req.query.code
             };
             configURL = new URLSearchParams(config).toString();

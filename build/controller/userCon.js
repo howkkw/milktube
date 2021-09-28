@@ -103,7 +103,7 @@ var myProfile = function myProfile(req, res) {
 exports.myProfile = myProfile;
 
 var getEditProfile = function getEditProfile(req, res) {
-  return res.render("edit-Profile", {
+  return res.render("edit-profile", {
     pageTitle: "Edit ".concat(res.locals.user.username, "'s Profile")
   });
 };
@@ -289,7 +289,7 @@ var postEditImg = /*#__PURE__*/function () {
             file = req.file;
             _context5.next = 4;
             return _user["default"].findByIdAndUpdate(id, {
-              avatarURL: file.path
+              avatarURL: file.location
             }, {
               "new": true
             });

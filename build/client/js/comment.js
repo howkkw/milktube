@@ -151,7 +151,7 @@ var fetchComment = /*#__PURE__*/function () {
 
               if (json.avatarURL) {
                 img = document.createElement("img");
-                img.src = "/".concat(json.avatarURL);
+                img.src = json.avatarURL;
               } else {
                 img = document.createElement("span");
                 img.innerText = "😀";

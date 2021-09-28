@@ -36,34 +36,35 @@ var postComment = /*#__PURE__*/function () {
 
           case 7:
             ownerUser = _context.sent;
+            console.log(ownerUser);
 
             if (video) {
-              _context.next = 12;
+              _context.next = 13;
               break;
             }
 
             return _context.abrupt("return", res.sendStatus(400));
 
-          case 12:
-            _context.next = 14;
+          case 13:
+            _context.next = 15;
             return _comment["default"].create({
               owner: UserID,
               video: id,
               content: req.body.commentsContent
             });
 
-          case 14:
+          case 15:
             comment = _context.sent;
             video.comment.push(comment._id);
             ownerUser.comment.push(comment._id);
-            _context.next = 19;
+            _context.next = 20;
             return video.save();
 
-          case 19:
-            _context.next = 21;
+          case 20:
+            _context.next = 22;
             return ownerUser.save();
 
-          case 21:
+          case 22:
             return _context.abrupt("return", res.status(200).json({
               commentid: comment._id,
               ownerID: UserID,
@@ -71,7 +72,7 @@ var postComment = /*#__PURE__*/function () {
               username: ownerUser.username
             }));
 
-          case 22:
+          case 23:
           case "end":
             return _context.stop();
         }

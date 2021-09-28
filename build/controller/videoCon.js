@@ -146,7 +146,7 @@ var postEdit = /*#__PURE__*/function () {
               hashtags: hashtags.split(",").map(function (a) {
                 return a.startsWith("#") ? a : "#".concat(a);
               }),
-              path: file.path
+              path: file.location
             }, {
               "new": true
             });
@@ -187,7 +187,6 @@ var postEdit = /*#__PURE__*/function () {
 exports.postEdit = postEdit;
 
 var getUpload = function getUpload(req, res) {
-  req.flash("info", "The Video Thumbnail will be automatically set. You can change a thumbnail using Edit after uploading");
   return res.render("upload", {
     pageTitle: "UPLOAD"
   });
@@ -197,44 +196,20 @@ exports.getUpload = getUpload;
 
 var postUpload = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res) {
-    var file, _req$body2, title, Description, hashtags, user, thumbnail, process, video, userVideo;
+    var files, _req$body2, title, Description, hashtags, user, thumbnail, video, userVideo;
 
     return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            file = req.file, _req$body2 = req.body, title = _req$body2.title, Description = _req$body2.Description, hashtags = _req$body2.hashtags, user = req.session.user;
-
-            try {
-              process = new _ffmpeg["default"](file.path);
-              process.then(function (Vid) {
-                // Callback mode
-                Vid.fnExtractFrameToJPG('uploads/video/thumb', {
-                  frame_rate: 1,
-                  number: 1,
-                  file_name: 'my_frame_%t_%s'
-                }, function (error, files) {
-                  if (!error) console.log('Frames: ' + files);
-                  thumbnail = files[files.length - 1];
-                  video.thumbpath = thumbnail;
-                  video.save();
-                  req.flash("info", "Successfully Uploaded!");
-                  return res.redirect("/");
-                });
-              }, function (err) {
-                console.log('Error: ' + err);
-              }).then();
-            } catch (e) {
-              console.log(e.code);
-              console.log(e.msg);
-            }
-
+            files = req.files, _req$body2 = req.body, title = _req$body2.title, Description = _req$body2.Description, hashtags = _req$body2.hashtags, user = req.session.user;
+            console.log(files);
             _context5.next = 4;
             return _video["default"].create({
-              path: file.path,
+              path: files.video[0].location,
               title: title,
               Description: Description,
-              thumbpath: thumbnail,
+              thumbpath: files.image[0].location,
               hashtags: hashtags.split(",").map(function (a) {
                 return a.startsWith("#") ? a : "#".concat(a);
               }),
@@ -243,15 +218,17 @@ var postUpload = /*#__PURE__*/function () {
 
           case 4:
             video = _context5.sent;
-            _context5.next = 7;
+            req.flash("info", "Successfully Uploaded!");
+            _context5.next = 8;
             return _user["default"].findById(user._id);
 
-          case 7:
+          case 8:
             userVideo = _context5.sent;
             userVideo.videos.push(video._id);
             userVideo.save();
+            return _context5.abrupt("return", res.redirect);
 
-          case 10:
+          case 12:
           case "end":
             return _context5.stop();
         }
@@ -286,7 +263,7 @@ var postVideoEdit = /*#__PURE__*/function () {
             file = req.file;
             _context6.next = 4;
             return _video["default"].findByIdAndUpdate(id, {
-              path: file.path
+              path: file.location
             }, {
               "new": true
             });
@@ -365,7 +342,7 @@ var postVideoThumbnail = /*#__PURE__*/function () {
             file = req.file;
             _context8.next = 4;
             return _video["default"].findByIdAndUpdate(id, {
-              thumbpath: file.path
+              thumbpath: file.location
             }, {
               "new": true
             });

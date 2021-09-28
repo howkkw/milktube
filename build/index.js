@@ -31,7 +31,7 @@ var _expressFlash = _interopRequireDefault(require("express-flash"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
-var PORT = 3900;
+var PORT = process.env.PORT || 3000;
 
 var handleServerListening = function handleServerListening() {
   return console.log("Server is successfully Listening on http://localhost:".concat(PORT, "\u26A1"));
@@ -49,13 +49,19 @@ app.use((0, _expressSession["default"])({
   resave: false,
   saveUninitialized: false,
   store: _connectMongo["default"].create({
-    mongoUrl: "mongodb://127.0.0.1:27017/wetube"
+    mongoUrl: process.env.DB_URL
   })
 }));
 app.use(_session.sessionMiddleware);
 app.use((0, _expressFlash["default"])());
 app.post("/user/:id([0-9a-f]{24})/edit/profile-image", _upload.uploadAvatar.single("image"));
-app.post("/video/upload", _upload.uploadVideo.single("video"));
+app.post("/video/upload", _upload.uploadVideo.fields([{
+  name: "video",
+  maxCount: 1
+}, {
+  name: "image",
+  maxCount: 1
+}]));
 app.post("/video/:id([0-9a-f]{24})/edit/video", _upload.uploadVideo.single("video"));
 app.post("/video/:id([0-9a-f]{24})/edit/thumb", _upload.uploadVideo.single("image"));
 app.use("/uploads", _express["default"]["static"]("uploads"));
