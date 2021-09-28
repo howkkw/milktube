@@ -15,7 +15,7 @@ import flash from "express-flash"
 
 
 const app = express();
-const PORT = 3900
+const PORT = process.env.PORT || 4000
 const handleServerListening = () => console.log(`Server is successfully Listening on http://localhost:${PORT}⚡`) 
 
 app.use(express.json())
@@ -27,7 +27,7 @@ app.use(session({
     secret:process.env.COOKIE_SECRET,
     resave:false,
     saveUninitialized:false,
-    store:MongoStore.create({mongoUrl:"mongodb://127.0.0.1:27017/wetube"})
+    store:MongoStore.create({mongoUrl:process.env.DB_URL})
 }))
 app.use(sessionMiddleware)
 app.use(flash())
