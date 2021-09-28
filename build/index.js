@@ -31,7 +31,7 @@ var _expressFlash = _interopRequireDefault(require("express-flash"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3440;
 
 var handleServerListening = function handleServerListening() {
   return console.log("Server is successfully Listening on http://localhost:".concat(PORT, "\u26A1"));

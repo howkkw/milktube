@@ -26,19 +26,20 @@ var home = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            console.log(req.session.user);
+            _context.next = 3;
             return _video["default"].find().populate("owner").sort({
               createdAt: "desc"
             });
 
-          case 2:
+          case 3:
             videos = _context.sent;
             return _context.abrupt("return", res.render("home", {
               pageTitle: "HOME",
               videos: videos
             }));
 
-          case 4:
+          case 5:
           case "end":
             return _context.stop();
         }
