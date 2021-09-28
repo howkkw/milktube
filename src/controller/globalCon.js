@@ -93,7 +93,7 @@ export const getSearch = async(req, res) => {
 }
 export const githubStart = (req, res) => {
     const config = {
-        client_id:"707f8e127ce1e01a3392",
+        client_id:process.env.CLIENT_ID,
         scope:"read:user user:email",
         allow_signup:false
     }
@@ -105,8 +105,8 @@ export const githubStart = (req, res) => {
 export const githubFinish = async (req, res) => {
     const url="https://github.com/login/oauth/access_token"
     const config={
-        client_id:"707f8e127ce1e01a3392",
-        client_secret:"30a2baad29887e060f9062f3606549610b35d4f3",
+        client_id:process.env.CLIENT_ID,
+        client_secret:CLIENT_SECRET,
         code:req.query.code}
     const configURL=new URLSearchParams(config).toString()
     const finalURL=`${url}?${configURL}`

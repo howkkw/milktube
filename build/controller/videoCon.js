@@ -216,8 +216,6 @@ var postUpload = /*#__PURE__*/function () {
                 }, function (error, files) {
                   if (!error) console.log('Frames: ' + files);
                   thumbnail = files[files.length - 1];
-                  console.log(files);
-                  console.log(thumbnail);
                   video.thumbpath = thumbnail;
                   video.save();
                   req.flash("info", "Successfully Uploaded!");

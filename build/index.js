@@ -1,5 +1,7 @@
 "use strict";
 
+require("dotenv/config");
+
 require("regenerator-runtime");
 
 var _express = _interopRequireDefault(require("express"));
@@ -43,7 +45,7 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use((0, _morgan["default"])("tiny"));
 app.use((0, _expressSession["default"])({
-  secret: "secret",
+  secret: process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized: false,
   store: _connectMongo["default"].create({
